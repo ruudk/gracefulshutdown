@@ -13,6 +13,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
+// http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+const instanceMetaDataEndpoint = "http://169.254.169.254/latest/meta-data/"
+
 type awsApi struct {
 	autoScaling *autoscaling.AutoScaling
 	ec2         *ec2.EC2
@@ -115,7 +118,7 @@ func (api *awsApi) GetMetadata(resId string) (string, error) {
 		Timeout: time.Second * 5,
 	}
 
-	resp, err := client.Get("http://169.254.169.254/latest/meta-data/" + resId)
+	resp, err := client.Get(instanceMetaDataEndpoint + resId)
 	if err != nil {
 		return "", err
 	}
