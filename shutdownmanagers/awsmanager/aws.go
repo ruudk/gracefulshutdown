@@ -17,7 +17,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Zemanta/gracefulshutdown"
+	"github.com/ruudk/gracefulshutdown"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/service/sqs"
